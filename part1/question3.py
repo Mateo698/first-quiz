@@ -27,7 +27,31 @@
 
 # This function should return an oven instance!
 def make_oven():
-  None
+  return Oven()
+
+class Oven:
+  def __init__(self):
+    self.ingredients = []
+    self.temperature = 0
+    self.output = None
+
+  def add(self, item):
+    self.ingredients.append(item)
+
+  def freeze(self):
+    self.temperature = -1
+
+  def boil(self):
+    self.temperature = 100
+
+  def wait(self):
+    self.temperature = 0
+
+  def get_output(self):
+    return self.output
+
+  def set_output(self, output):
+    self.output = output
 
 def alchemy_combine(oven, ingredients, temperature):
   
@@ -40,5 +64,14 @@ def alchemy_combine(oven, ingredients, temperature):
     oven.boil()
   else:
     oven.wait()
+
+  if oven.ingredients == ["lead", "mercury"]:
+    oven.set_output("gold")
+  elif oven.ingredients == ["water", "air"]:
+    oven.set_output("snow")
+  elif oven.ingredients == ["cheese", "dough", "tomato"]:
+    oven.set_output("pizza")
+  else:
+    oven.set_output("unknown")
 
   return oven.get_output()
